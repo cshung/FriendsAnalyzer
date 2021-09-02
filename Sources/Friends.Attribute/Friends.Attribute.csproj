@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../Versions.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>$(CreatePackages)</GeneratePackageOnBuild>
+    <Version>$(FriendsAttributeVersion)</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <Target Name="PrepareBase" AfterTargets="CopyFilesToOutputDirectory">
+    <PropertyGroup>
+      <NuspecBasePath>$(OutputPath)\base</NuspecBasePath>
+      <NuspecFile>Friends.Attribute.nuspec</NuspecFile>
+      <NuspecProperties>FriendsAttributeVersion=$(FriendsAttributeVersion);FriendsAnalyzerVersion=$(FriendsAnalyzerVersion)</NuspecProperties>
+    </PropertyGroup>
+    <ItemGroup>
+      <MySourceFiles Include="$(OutputPath)\Friends.Attribute.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(OutputPath)/base/lib/netstandard2.0" />
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

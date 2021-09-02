@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <CreatePackages>true</CreatePackages>
+    <FriendsAttributeVersion>1.0.0.0</FriendsAttributeVersion>
+    <FriendsAnalyzerVersion>1.0.0.0</FriendsAnalyzerVersion>
+  </PropertyGroup>
+</Project>

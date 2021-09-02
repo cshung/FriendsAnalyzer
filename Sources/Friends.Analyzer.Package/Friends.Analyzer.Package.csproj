@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../Versions.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <GeneratePackageOnBuild>$(CreatePackages)</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Friends.Analyzer.CodeFixes\Friends.Analyzer.CodeFixes.csproj" />
+    <ProjectReference Include="..\Friends.Analyzer\Friends.Analyzer.csproj" />
+  </ItemGroup>
+
+  <Target Name="PrepareBase" AfterTargets="CopyFilesToOutputDirectory">
+    <PropertyGroup>
+      <NuspecBasePath>$(OutputPath)\base</NuspecBasePath>
+      <NuspecFile>Friends.Analyzer.nuspec</NuspecFile>
+      <NuspecProperties>FriendsAttributeVersion=$(FriendsAttributeVersion);FriendsAnalyzerVersion=$(FriendsAnalyzerVersion)</NuspecProperties>
+    </PropertyGroup>
+    <ItemGroup>
+      <MySourceFiles Include="$(OutputPath)\Friends.Analyzer.dll" />
+      <MySourceFiles Include="$(OutputPath)\Friends.Analyzer.CodeFixes.dll" />
+    </ItemGroup>
+    <ItemGroup>
+      <MyToolFiles Include="tools\*.ps1" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(MySourceFiles)"
+      DestinationFolder="$(OutputPath)/base/analyzers/dotnet/cs"
+    />
+    <Copy
+      SourceFiles="@(MyToolFiles)"
+      DestinationFolder="$(OutputPath)/base/tools"
+    />
+  </Target>
+
+</Project>

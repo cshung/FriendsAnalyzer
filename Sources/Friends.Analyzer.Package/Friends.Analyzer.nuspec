@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Friends.Analyzer</id>
+    <version>$FriendsAnalyzerVersion$</version>
+    <authors>andrewau</authors>
+    <developmentDependency>true</developmentDependency>
+    <description>Friends.Analyzer</description>
+    <license type="expression">MIT</license>
+  </metadata>
+</package>
